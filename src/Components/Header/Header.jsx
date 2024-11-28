@@ -1,3 +1,5 @@
+import styles from './header.module.css';
+
 export default function Header() {
-    return <div>Header</div>
+    return <header className={styles.title}>English words</header>
 }

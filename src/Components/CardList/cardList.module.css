@@ -1,0 +1,8 @@
+.cardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    border: 1px solid black;
+    background-color: #F5F5F5;
+    gap: 1rem;
+}

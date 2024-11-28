@@ -1,0 +1,27 @@
+.word {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25% 10%;
+    width: 100%;
+    border: 1px solid black;
+    background-color: #F5F5F5;
+}
+
+.english {
+    grid-column: 1/2;
+}
+
+.transcription {
+    grid-column: 2/3;
+}
+
+.russian {    
+    grid-column: 3/4;   
+}
+
+.tags {
+    grid-column: 4/5;
+}
+
+.addBtn {
+    grid-column: 5/6;
+}

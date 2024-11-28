@@ -1,0 +1,11 @@
+.table {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 100%;
+    border: 1px solid black;
+    background-color: #F5F5F5;
+}
+
+.paragraph {
+    border: 1px solid black;
+}
