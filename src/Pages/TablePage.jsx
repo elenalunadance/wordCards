@@ -10,10 +10,6 @@ export default function TablePage() {
     }, []);
 
     return <div className={styles.table}>
-        <p className={styles.paragraph}>Слово</p>
-        <p className={styles.paragraph}>Транскрипция</p>
-        <p className={styles.paragraph}>Перевод</p>
-        <p className={styles.paragraph}>Категория</p>
 
             {items.map(item => (
         <Word key={item.id} english={item.english} transcription={item.transcription} russian={item.russian} tags={item.tags}/>
