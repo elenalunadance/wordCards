@@ -1,4 +1,4 @@
-import { HomePage, ErrorPage, GamePage, TablePage } from '../Pages';
+import { HomePage, ErrorPage, GamePage } from '../Pages';
 import CardList from '../Components/CardList/CardList';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
@@ -12,7 +12,7 @@ function App() {
         <Header />
       </header>
       <main>
-        <TablePage />
+        <HomePage />
         <CardList />
       </main>
       <footer>
