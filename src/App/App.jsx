@@ -12,6 +12,7 @@ function App() {
         <Header />
       </header>
       <main>
+        <TablePage />
         <CardList />
       </main>
       <footer>
