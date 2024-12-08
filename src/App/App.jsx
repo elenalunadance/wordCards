@@ -12,7 +12,7 @@ function App() {
         <Header />
       </header>
       <main>
-        <HomePage />
+
         <CardList />
       </main>
       <footer>

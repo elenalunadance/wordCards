@@ -2,5 +2,7 @@
 
 
 export default function GamePage() {
-    return <div>GamePage</div>
+    return <div>
+        
+    </div>
 }

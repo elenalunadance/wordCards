@@ -12,7 +12,7 @@ const Card = ({ english, transcription, russian, tags, onClick }) => {
         <div className={styles.card}>
             <p className={styles.english}>{english}</p>
             <p className={styles.transcription}>{transcription}</p>
-            <button className={styles.addBtn} onClick={handleClick} 
+            <button className={styles.translateBtn} onClick={handleClick} 
             style={{ display: isPressed ? 'none' : 'block' }}>
                 {isPressed ? '' : 'Посмотреть перевод'}
             </button>

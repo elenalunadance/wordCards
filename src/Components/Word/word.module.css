@@ -46,3 +46,48 @@
 .selected {
     background-color: rgb(173, 230, 173);
 }
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 0.1rem;
+}
+
+.wordInput {
+    width: 25rem;
+    height: 2.1rem;
+}
+
+.addBtn {
+    width: 8rem;
+    height: 2.1rem;
+    border: 1px solid #87dc6d;
+    border-radius: 0.5rem;
+    background-color: #87dc6d;
+    font-weight: bold;
+}
+
+
+.editBtn {
+    width: 2rem;
+    height: 2.1rem;
+    background-color: #f1df79;
+    border: 1px solid #f1df79;
+    border-radius: 0.5rem;
+}
+
+.deleteBtn {
+    width: 2rem;
+    height: 2.1rem;
+    background-color: #f19979;
+    border: 1px solid #f19979;
+    border-radius: 0.5rem;
+}
+
+button, input:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
