@@ -10,24 +10,25 @@ export default function GamePage({ initialIndex }) {
     useEffect(() => {
         setItems(data);
         if (data.length > 0) {
+
             setCurrentIndex(initialIndex % data.length);
         }
     }, [initialIndex]);
 
     const handleClickBack = () => {
-        setCurrentIndex((currentIndex - 1 + items.length) % items.length);
+        setCurrentIndex(prevIndex => (prevIndex - 1 + items.length) % items.length);
     };
 
     const handleClickNext = () => {
-        setCurrentIndex((currentIndex + 1) % items.length);
+        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
     };
 
     return (
         <div className={styles.gamePage}>
             <button className={styles.backBtn} onClick={handleClickBack}>
-                <img src="../../assets/images/left_arrow.png" alt="назад" />
+                <img src="src/assets/images/left_arrow.png" alt="назад" />
             </button>
-            {items.length > 0 && (
+            {items.length > 0 && currentIndex >= 0 && currentIndex < items.length && (
                 <Card
                     key={items[currentIndex].id}
                     english={items[currentIndex].english}
@@ -37,7 +38,7 @@ export default function GamePage({ initialIndex }) {
                 />
             )}
             <button className={styles.nextBtn} onClick={handleClickNext}>
-                <img src="../../assets/images/right_arrow.png" alt="вперед" />
+                <img src="src/assets/images/right_arrow.png" alt="вперед" />
             </button>
         </div>
     );
