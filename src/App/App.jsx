@@ -1,5 +1,5 @@
 import { HomePage, ErrorPage, GamePage } from '../Pages';
-import CardList from '../Components/CardList/CardList';
+
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
 import '../App/app.module.css';
@@ -12,8 +12,8 @@ function App() {
         <Header />
       </header>
       <main>
-
-        <CardList />
+        <HomePage />
+        <GamePage />
       </main>
       <footer>
         <Footer />

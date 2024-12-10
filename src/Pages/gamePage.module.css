@@ -1,4 +1,14 @@
 .gamePage {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.backBtn, .nextBtn {
+    width: 4rem;
+    height: 6rem;
+    border: 0.1px solid #cce2dc;
+    border-radius: 0.5rem;
+    background-color: #cce2dc;
+    align-self: center;
 }

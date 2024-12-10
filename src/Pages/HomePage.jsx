@@ -12,16 +12,10 @@ export default function HomePage() {
 
 
     return (
-        
         <div className={styles.table}>
-
-            <div>
                 {items.map(item => (
                 <Word key={item.id} english={item.english} transcription={item.transcription} russian={item.russian} tags={item.tags}/>
                 ))}
-                
-            </div>
-            
         </div>
     );
 };
