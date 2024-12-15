@@ -43,7 +43,11 @@
 }
 
 .selected {
-    background-color: #cce2dc;
+    background-color: #cce2dc;  
+}
+
+.hidden {
+    display: none;
 }
 
 .form {

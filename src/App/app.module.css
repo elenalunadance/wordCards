@@ -5,4 +5,10 @@
 
 html {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: calc(16 / 1440 * 100vw);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }

@@ -1,0 +1,28 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #F5F5F5;
+    height: 5rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 3rem;
+    width: 100%;
+}
+
+.link {
+    text-decoration: none;
+    color: #070707;
+}
+
+.logo {
+    width: 2rem;
+    height: 2rem;
+}

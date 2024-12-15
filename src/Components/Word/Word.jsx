@@ -27,7 +27,7 @@ const Word = ({ english, transcription, russian, tags, onClick }) => {
             </form>
         )}
         
-            <div className={`${styles.word} ${selected ? styles.selected : ''}`}
+            <div className={`${styles.word} ${selected ? styles.selected : ''} ${isPressed ? styles.hidden : ''}`}
             onClick={handleClick}>
 
                 <p className={styles.paragraph}>{english}</p>

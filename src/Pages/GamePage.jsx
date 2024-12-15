@@ -3,7 +3,7 @@ import data from '../Services/data.json';
 import Card from '../Components/Card/Card';
 import styles from './gamePage.module.css';
 
-export default function GamePage({ initialIndex }) {
+export default function GamePage({ initialIndex = 0 }) {
     const [items, setItems] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
