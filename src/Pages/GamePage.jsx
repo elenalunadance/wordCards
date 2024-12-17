@@ -6,6 +6,7 @@ import styles from './gamePage.module.css';
 export default function GamePage({ initialIndex = 0 }) {
     const [items, setItems] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [itemsLearned, setItemsLearned] = useState(0);
 
     useEffect(() => {
         setItems(data);
@@ -23,6 +24,11 @@ export default function GamePage({ initialIndex = 0 }) {
         setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
     };
 
+    const itemsCount = () => {
+        setItemsLearned(itemsLearned + 1);
+        console.log(itemsLearned);
+    }
+
     return (
         <div className={styles.gamePage}>
             <button className={styles.backBtn} onClick={handleClickBack}>
@@ -35,6 +41,7 @@ export default function GamePage({ initialIndex = 0 }) {
                     transcription={items[currentIndex].transcription}
                     russian={items[currentIndex].russian}
                     tags={items[currentIndex].tags}
+                    itemsCount={itemsCount}
                 />
             )}
             <button className={styles.nextBtn} onClick={handleClickNext}>

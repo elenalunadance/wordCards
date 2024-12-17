@@ -6,12 +6,14 @@
     width: 100%;
     background-color: #F5F5F5;
     height: 5rem;
+    margin-top: 1rem;
 }
 
 .list {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     list-style-type: none;
     margin: 3rem;
     width: 100%;
@@ -20,6 +22,12 @@
 .link {
     text-decoration: none;
     color: #070707;
+}
+
+.link:hover {
+    color: #e4c6f6;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .logo {

@@ -2,6 +2,8 @@ import { Link } from "react-router";
 import styles from './navBar.module.css';
 
 function NavBar( { title = "English words"} ) {
+
+
     return (
         <nav className={styles.navBar}>
             <ul className={styles.list}>
