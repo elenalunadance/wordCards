@@ -23,3 +23,8 @@
     border-radius: 1rem;
     background-color: #cce2dc;
 }
+
+.translateBtn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(7, 129, 74, 0.49);
+}

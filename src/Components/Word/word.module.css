@@ -13,7 +13,7 @@
 }
 
 .addBtn {
-    width: 4rem;
+    width: 4.1rem;
     height: 2.1rem;
     border: 1px solid #cce2dc;
     border-radius: 0.5rem;
@@ -63,5 +63,7 @@
     height: 2.1rem;
 }
 
-
+.error {
+    border: red;
+}
 
