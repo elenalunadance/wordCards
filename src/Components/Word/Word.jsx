@@ -2,96 +2,80 @@ import { useState } from "react";
 import styles from './word.module.css';
 
 const Word = ({ english, transcription, russian, onClick }) => {
-    const [isSelected, setIsSelected] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
-    const [formValues, setFormValues] = useState({
-        english: english || '',
-        transcription: transcription || '',
-        russian: russian || ''
-    });
-    const [formErrors, setFormErrors] = useState({});
+    const [selected, setSelected] = useState(false);
+    const [editing, setEditing] = useState(false);
+    const [values, setValues] = useState({ english, transcription, russian });
 
     const toggleSelected = () => {
-        const newSelectedState = !isSelected;
-        setIsSelected(newSelectedState);
-        onClick && onClick(newSelectedState);
+        const newSelected = !selected;
+        setSelected(newSelected);
+        if (onClick) onClick(newSelected);
     };
 
     const toggleEditing = () => {
-        setIsEditing(!isEditing);
-    };
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormValues(prevValues => ({ ...prevValues, [name]: value }));
-
-        if (value.trim() !== '') {
-            setFormErrors(prevErrors => ({ ...prevErrors, [name]: false }));
+        setEditing(!editing);
+        if (!values.english || !values.transcription || !values.russian) {
+            setValues({ english, transcription, russian });
         }
     };
 
-    const validateFields = () => {
-        const errors = {};
-        for (const key in formValues) {
-            if (formValues[key].trim() === '') {
-                errors[key] = true;
-            }
-        }
-        setFormErrors(errors);
-        return Object.keys(errors).length === 0;
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setValues(prevValues => ({ ...prevValues, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!validateFields()) {
+        if (!values.english || !values.transcription || !values.russian || values.english.trim().length < 2 || values.transcription.trim().length < 2 || values.russian.trim().length < 2) {
             alert('Пожалуйста, заполните все поля формы.');
             return;
         }
-        setIsEditing(false);
+        console.log(values);
+        setEditing(false);
     };
 
     return (
-        <div className={styles.wordWrapper}>
-            {isEditing ? (
+        <div className={styles.word}>
+            {editing ? (
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <input
                         type="text"
                         name="english"
-                        value={formValues.english}
+                        value={values.english}
                         onChange={handleInputChange}
-                        className={`${styles.wordInput} ${formErrors.english ? styles.error : ''}`}
+                        className={`${styles.wordInput} ${!values.english ? styles.error : ''}`}
                         placeholder="English"
                     />
                     <input
                         type="text"
                         name="transcription"
-                        value={formValues.transcription}
+                        value={values.transcription}
                         onChange={handleInputChange}
-                        className={`${styles.wordInput} ${formErrors.transcription ? styles.error : ''}`}
+                        className={`${styles.wordInput} ${!values.transcription ? styles.error : ''}`}
                         placeholder="Transcription"
                     />
                     <input
                         type="text"
                         name="russian"
-                        value={formValues.russian}
+                        value={values.russian}
                         onChange={handleInputChange}
-                        className={`${styles.wordInput} ${formErrors.russian ? styles.error : ''}`}
+                        className={`${styles.wordInput} ${!values.russian ? styles.error : ''}`}
                         placeholder="Russian"
                     />
-                    <button type="submit" className={styles.addBtn} disabled={Object.keys(formErrors).length > 0}>
+                    <button type="submit" className={styles.saveBtn} disabled={!values.english || !values.transcription || !values.russian} onClick={handleSubmit}>
                         Сохранить
                     </button>
                 </form>
             ) : (
-                <div className={`${styles.word} ${isSelected ? styles.selected : ''}`} onClick={toggleSelected}>
+                <div className={`${styles.word} ${selected ? styles.selected : ''}`} onClick={toggleSelected}>
                     <p className={styles.paragraph}>{english}</p>
                     <p className={styles.paragraph}>{transcription}</p>
                     <p className={styles.paragraph}>{russian}</p>
                     <button type="button" className={styles.editBtn} onClick={toggleEditing}>
-                        <img src="src/assets/images/edit-1.png" alt="Edit" />
+                        <img className={styles.edit} src="src/assets/images/edit-1.png" alt="Edit" />
                     </button>
                     <button className={styles.deleteBtn}>
-                        <img src="src/assets/images/trash.png" alt="Delete" />
+                        <img className={styles.trash} src="src/assets/images/trash.png" alt="Delete" />
                     </button>
                 </div>
             )}

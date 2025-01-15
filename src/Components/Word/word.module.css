@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    width: 100%;
     margin-top: 0.1rem;
 }
 
@@ -12,13 +11,13 @@
     border: 1px solid #070707;
 }
 
-.addBtn {
-    width: 4.1rem;
+.saveBtn {
     height: 2.1rem;
     border: 1px solid #cce2dc;
     border-radius: 0.5rem;
     background-color: #cce2dc;
     font-weight: bold;
+    font-size: 0.8rem;
 }
 
 .editBtn {
@@ -29,6 +28,11 @@
     border-radius: 0.5rem;
 }
 
+.edit {
+    width: 2rem;
+    height: 2.1rem;
+}
+
 .deleteBtn {
     width: 2rem;
     height: 2.1rem;
@@ -37,8 +41,13 @@
     border-radius: 0.5rem;
 }
 
+.trash {
+    width: 2rem;
+    height: 2.1rem;
+}
+
 .word:hover {
-    background-color: #cce2dc;
+    background-color: #edf4f2;
     cursor: pointer;
 }
 
@@ -64,6 +73,6 @@
 }
 
 .error {
-    border: red;
+    border: 1px solid red;
 }
 
