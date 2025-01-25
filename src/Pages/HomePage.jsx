@@ -1,21 +1,30 @@
 import Word from '../Components/Word/Word';
-import { useState, useEffect } from 'react';
-import data from '../Services/data.json';
+import { useContext } from 'react';
 import styles from './homePage.module.css';
+import { WordsContext } from '../Components/context/WordsContext.js';
+
 
 export default function HomePage() {
-    const [items, setItems] = useState([]);
+    const { isLoading, words, deleteWord } = useContext(WordsContext);
 
-    useEffect(() => {
-        setItems(data);
-    }, []);
-
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
     return (
         <div className={styles.table}>
-                {items.map(item => (
-                <Word key={item.id} english={item.english} transcription={item.transcription} russian={item.russian} tags={item.tags}/>
-                ))}
+            {words.map(({ id, english, transcription, russian, tags,tags_json }) => (
+                <Word
+                    key={id}
+                    id={id}
+                    english={english}
+                    transcription={transcription}
+                    russian={russian}
+                    tags={tags}
+                    tags_json={tags_json}
+                    deleteWord={deleteWord}
+                />
+            ))}
         </div>
     );
-};
+}

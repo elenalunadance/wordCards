@@ -1,52 +1,60 @@
-import { useState, useEffect } from 'react';
-import data from '../Services/data.json';
+import { useState, useEffect, useContext } from 'react';
+import { WordsContext } from '../Components/context/WordsContext';
 import Card from '../Components/Card/Card';
 import styles from './gamePage.module.css';
 
 export default function GamePage({ initialIndex = 0 }) {
-    const [items, setItems] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [itemsLearned, setItemsLearned] = useState(0);
+    const { words } = useContext(WordsContext);
+
+    const [wordIndex, setWordIndex] = useState(initialIndex);
+    const [wordsLearned, setWordsLearned] = useState(0);
 
     useEffect(() => {
-        setItems(data);
-        if (data.length > 0) {
-
-            setCurrentIndex(initialIndex % data.length);
+        if (initialIndex >= 0 && initialIndex < words.length) {
+            setWordIndex(initialIndex);
         }
-    }, [initialIndex]);
+    }, [initialIndex, words]);
 
-    const handleClickBack = () => {
-        setCurrentIndex(prevIndex => (prevIndex - 1 + items.length) % items.length);
+    const handleGoBack = () => {
+        if (words.length > 0) {
+            setWordIndex((wordIndex - 1 + words.length) % words.length);
+        }
     };
 
-    const handleClickNext = () => {
-        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
+    const handleGoForward = () => {
+        if (words.length > 0) {
+            setWordIndex((wordIndex + 1) % words.length);
+        }
     };
 
-    const itemsCount = () => {
-        setItemsLearned(itemsLearned + 1);
-        console.log(itemsLearned);
-    }
+    const handleLearned = () => {
+        if (wordsLearned < words.length) {
+            setWordsLearned(wordsLearned + 1);
+        }
+    };
 
     return (
-        <div className={styles.gamePage}>
-            <button className={styles.backBtn} onClick={handleClickBack}>
+        <div className={styles.container}>
+            <button className={styles.button} onClick={handleGoBack}>
                 <img src="src/assets/images/left_arrow.png" alt="назад" />
             </button>
-            {items.length > 0 && currentIndex >= 0 && currentIndex < items.length && (
-                <Card
-                    key={items[currentIndex].id}
-                    english={items[currentIndex].english}
-                    transcription={items[currentIndex].transcription}
-                    russian={items[currentIndex].russian}
-                    tags={items[currentIndex].tags}
-                    itemsCount={itemsCount}
-                />
-            )}
-            <button className={styles.nextBtn} onClick={handleClickNext}>
+            
+                {words.length > 0 && (
+                    <Card
+                        key={words[wordIndex].id}
+                        english={words[wordIndex].english}
+                        transcription={words[wordIndex].transcription}
+                        russian={words[wordIndex].russian}
+                        tags={words[wordIndex].tags}
+                        handleLearned={handleLearned}
+                    />
+                )}
+            
+
+            <button className={styles.button} onClick={handleGoForward}>
                 <img src="src/assets/images/right_arrow.png" alt="вперед" />
             </button>
+            <p className={styles.wordsLearned}>Изучено слов: {wordsLearned}/{words.length}</p>
         </div>
     );
 }

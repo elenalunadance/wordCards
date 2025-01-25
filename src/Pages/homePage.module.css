@@ -6,3 +6,19 @@
     align-items: center;
 
 }
+
+.wordInput {
+    width: 25rem;
+    height: 2.1rem;
+    margin-bottom: 2rem;
+}
+
+.formInputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    margin-top: 0.1rem;
+}
+
+

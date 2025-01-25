@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import data from '../../Services/data.json';
+import { WordsContext } from '../context/WordsContext.js';
 import Card from '../Card/Card';
 import styles from './cardList.module.css';
 
@@ -7,7 +7,7 @@ import styles from './cardList.module.css';
 export default function CardList () {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        setItems(data);
+        setItems(WordsContext.data);
     }, []);
 
     return (
