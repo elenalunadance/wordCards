@@ -17,8 +17,7 @@
     "react-hook-form": "^7.54.2",
     "react-router": "^7.0.2",
     "react-router-dom": "^7.0.2",
-    "router": "^1.3.8",
-    "proxy": "<http://itgirlschool.justmakeit.ru>"
+    "router": "^1.3.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

@@ -9,7 +9,7 @@ class WordsApiService {
   }
 
   async add({ english, transcription, russian, tags, id, tags_json }) {
-    const response = await fetch(`${API_URL}/words/add`, {
+    await fetch(`${API_URL}/words/add`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

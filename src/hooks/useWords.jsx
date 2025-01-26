@@ -8,40 +8,32 @@ export function useWords() {
 
   const editWord = async (data) => {
     if (!data || !data.id) {
-      console.error("Data or ID is not provided");
-      return;
+      throw new Error("Data or ID is not provided");
     }
-
+  
+    setPending(true); 
+  
     try {
-      if (data.id === "new") {
-        await wordsApiService.add(data);
-        setWords((prevWords) => [data, ...prevWords]);
-      } else {
-        await wordsApiService.update(data);
-        setWords((prevWords) =>
-          prevWords.map((word) =>
-            word.id === data.id ? { ...word, ...data } : word
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Error editing word:", error);
+      await wordsApiService.editWord(data);
+      const updatedWords = words.map((word) => 
+        word.id === data.id ? { ...word, ...data } : word
+      );
+  
+      setWords(updatedWords);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setPending(false);
     }
   };
 
   const addWord = async (data) => {
-    if (!data || !data.id) {
-      console.error("Data or ID is not provided");
-      return;
-    }
+      await wordsApiService.create(data);
 
-    try {
-      await wordsApiService.add(data);
-      setWords((prevWords) => [data, ...prevWords]);
-    } catch (error) {
-      console.error("Error adding word:", error);
-    }
-  };
+      const newWords = words.concat(data);
+  
+      setWords(newWords);
+    };
 
   const deleteWord = async (id) => {
     if (!id) {
