@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from './word.module.css';
+import { observer } from 'mobx-react-lite';
+import { WordsStoreContext } from '../../store/WordsStore.js';
 
-const Word = ({ english, transcription, russian, onClick }) => {
+const Word = observer(({ english, transcription, russian, onClick }) => {
     const [selected, setSelected] = useState(false);
     const [editing, setEditing] = useState(false);
     const [values, setValues] = useState({ english, transcription, russian });
+    const store = useContext(WordsStoreContext);
 
     const toggleSelected = () => {
         const newSelected = !selected;
@@ -30,7 +33,7 @@ const Word = ({ english, transcription, russian, onClick }) => {
             alert('Пожалуйста, заполните все поля формы.');
             return;
         }
-        console.log(values);
+        store.updateWord(values);
         setEditing(false);
     };
 
@@ -81,6 +84,6 @@ const Word = ({ english, transcription, russian, onClick }) => {
             )}
         </div>
     );
-};
+});
 
 export default Word;

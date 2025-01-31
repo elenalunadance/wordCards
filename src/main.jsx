@@ -1,11 +1,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App/App';
-
+import { Provider } from 'mobx-react';
+import { wordsStore } from './store/WordsStore';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <Provider wordsStore={wordsStore}>
+      <App />
+    </Provider>
   </StrictMode>,
 )

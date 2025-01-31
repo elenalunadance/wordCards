@@ -1,21 +1,77 @@
 import Word from '../Components/Word/Word';
-import { useState, useEffect } from 'react';
-import data from '../Services/data.json';
+import { useState, useEffect, useContext } from 'react';
 import styles from './homePage.module.css';
+import { WordsStoreContext } from '../store/WordsStore.js';
+import { observer } from 'mobx-react-lite';
 
-export default function HomePage() {
-    const [items, setItems] = useState([]);
+const HomePage = observer(() => {
+    const { updateWord, addWord, deleteWord, fetchWords} = useContext(WordsStoreContext);
+    const [newWord, setNewWord] = useState({ english: '', transcription: '', russian: '' });
+    const store = useContext(WordsStoreContext);
 
     useEffect(() => {
-        setItems(data);
+        fetchWords();
     }, []);
+	
+    const handleAdd = (e) => {
+        e.preventDefault();
+        if (newWord.english && newWord.transcription && newWord.russian) {
+            store.addWord(newWord);
+            setNewWord({ english: '', transcription: '', russian: '' });
+        }
+    };
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewWord(prevValues => ({ ...prevValues, [name]: value }));
+    };
 
     return (
         <div className={styles.table}>
-                {items.map(item => (
-                <Word key={item.id} english={item.english} transcription={item.transcription} russian={item.russian} tags={item.tags}/>
-                ))}
+            <form className={styles.formInputs} onSubmit={handleAdd}>
+                <input
+                    type="text"
+                    name="english"
+                    value={newWord.english}
+                    onChange={handleInputChange}
+                    className={styles.wordInput}
+                    placeholder="English"
+                />
+                <input
+                    type="text"
+                    name="transcription"
+                    value={newWord.transcription}
+                    onChange={handleInputChange}
+                    className={styles.wordInput}
+                    placeholder="Transcription"
+                />
+                <input
+                    type="text"
+                    name="russian"
+                    value={newWord.russian}
+                    onChange={handleInputChange}
+                    className={styles.wordInput}
+                    placeholder="Russian"
+                />
+                <button type="button" className={styles.addBtn} onClick={handleAdd}>Добавить</button>
+            </form>
+            {store.words.map(({ id, english, transcription, russian, tags, tags_json }) => (
+                <Word
+                    key={id}
+                    id={id}
+                    english={english}
+                    transcription={transcription}
+                    russian={russian}
+                    tags={tags}
+                    tags_json={tags_json}
+                    deleteWord={deleteWord}
+                    updateWord={updateWord}
+                    addWord={addWord}
+                    fetchWords={fetchWords}
+                />
+            ))}
         </div>
     );
-};
+});
+
+export default HomePage;

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import useFocus from '../../hooks/useFocus';
 import styles from './card.module.css';
+import { observer } from 'mobx-react-lite';
+import { WordsStoreContext } from '../../store/WordsStore';
 
-const Card = ({ english, transcription, russian, tags, onClick, itemsCount }) => {
+const Card = observer(({ english, transcription, russian, tags, onClick, itemsCount }) => {
     const [isPressed, setIsPressed] = useState(false);
     const buttonRef = useFocus();
+    const store = useContext(WordsStoreContext);
 
     const handleClick = () => {
         setIsPressed(!isPressed);
@@ -18,7 +21,7 @@ const Card = ({ english, transcription, russian, tags, onClick, itemsCount }) =>
             <button 
                 type="submit" 
                 className={styles.translateBtn} 
-                onClick={() => { handleClick(); itemsCount(); }}
+                onClick={() => { handleClick(); store.itemsCount(); }}
                 style={{ display: isPressed ? 'none' : 'block' }} 
                 ref={buttonRef} 
             >
@@ -27,6 +30,6 @@ const Card = ({ english, transcription, russian, tags, onClick, itemsCount }) =>
             <p className={styles.russian} style={{ display: isPressed ? 'block' : 'none' }}>{russian}</p>
         </div>
     );
-};
+});
 
 export default Card;

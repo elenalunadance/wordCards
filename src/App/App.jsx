@@ -2,11 +2,10 @@ import { HomePage, GamePage } from '../Pages';
 import Header from '../Components/Header/Header';
 import '../App/app.module.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Missing from '../Components/Missing/Missing';
+import { observer } from 'mobx-react-lite';
 
-
-function App() {
+const App = observer(() => {
   return (
     <Router>
       <div className="app">
@@ -20,6 +19,6 @@ function App() {
       </div>
     </Router>
   );
-}
+});
 
-export default App
+export default App;
