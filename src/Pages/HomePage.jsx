@@ -21,6 +21,7 @@ const HomePage = observer(() => {
         }
     };
 
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewWord(prevValues => ({ ...prevValues, [name]: value }));
@@ -58,7 +59,6 @@ const HomePage = observer(() => {
             {store.words.map(({ id, english, transcription, russian, tags, tags_json }) => (
                 <Word
                     key={id}
-                    id={id}
                     english={english}
                     transcription={transcription}
                     russian={russian}

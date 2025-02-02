@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import useFocus from '../../hooks/useFocus';
 import styles from './card.module.css';
 import { observer } from 'mobx-react-lite';
 import { WordsStoreContext } from '../../store/WordsStore';
 
-const Card = observer(({ english, transcription, russian, tags, onClick, itemsCount }) => {
+const Card = observer(({ english, transcription, russian }) => {
     const [isPressed, setIsPressed] = useState(false);
     const buttonRef = useFocus();
     const store = useContext(WordsStoreContext);

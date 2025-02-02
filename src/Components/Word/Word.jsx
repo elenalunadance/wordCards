@@ -3,7 +3,7 @@ import styles from './word.module.css';
 import { observer } from 'mobx-react-lite';
 import { WordsStoreContext } from '../../store/WordsStore.js';
 
-const Word = observer(({ english, transcription, russian, onClick }) => {
+const Word = observer(({ id,english, transcription, russian, onClick }) => {
     const [selected, setSelected] = useState(false);
     const [editing, setEditing] = useState(false);
     const [values, setValues] = useState({ english, transcription, russian });
@@ -29,7 +29,10 @@ const Word = observer(({ english, transcription, russian, onClick }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!values.english || !values.transcription || !values.russian || values.english.trim().length < 2 || values.transcription.trim().length < 2 || values.russian.trim().length < 2) {
+        if (!values.english || !values.transcription || !values.russian || 
+            values.english.trim().length < 2 || 
+            values.transcription.trim().length < 2 || 
+            values.russian.trim().length < 2) {
             alert('Пожалуйста, заполните все поля формы.');
             return;
         }
@@ -65,7 +68,7 @@ const Word = observer(({ english, transcription, russian, onClick }) => {
                         className={`${styles.wordInput} ${!values.russian ? styles.error : ''}`}
                         placeholder="Russian"
                     />
-                    <button type="submit" className={styles.saveBtn} disabled={!values.english || !values.transcription || !values.russian} onClick={handleSubmit}>
+                    <button type="submit" className={styles.saveBtn} disabled={!values.english || !values.transcription || !values.russian}>
                         Сохранить
                     </button>
                 </form>
@@ -77,7 +80,7 @@ const Word = observer(({ english, transcription, russian, onClick }) => {
                     <button type="button" className={styles.editBtn} onClick={toggleEditing}>
                         <img className={styles.edit} src="src/assets/images/edit-1.png" alt="Edit" />
                     </button>
-                    <button className={styles.deleteBtn}>
+                    <button className={styles.deleteBtn} onClick={() => store.deleteWord(id)}>
                         <img className={styles.trash} src="src/assets/images/trash.png" alt="Delete" />
                     </button>
                 </div>

@@ -1,4 +1,5 @@
-import { makeAutoObservable } from 'mobx';
+import { v4 as uuidv4 } from 'uuid';
+import { makeAutoObservable} from 'mobx';
 import { createContext } from 'react';
 import { wordsApiService } from '../api/WordsApiService';
 
@@ -10,45 +11,50 @@ class WordsStore {
         this.fetchWords();
     }
 
-    async fetchWords() {
+    fetchWords = async () => {
         try {
             const response = await wordsApiService.fetchWords();
             this.setWords(response);
         } catch (error) {
             console.error("Ошибка при загрузке слов:", error);
         }
-    }
+    };
 
     setWords(words) {
         this.words = words;
-    }
+    };
 
-    addWord(word) {
-        this.words.push(word);
-        this.saveChanges();
-    }
-
-    deleteWord(id) {
-        this.words = this.words.filter(word => word !== id);
-        this.saveChanges();
-    }
-
-    updateWord(oldWord, newWord) {
-        const index = this.words.indexOf(oldWord);
-        if (index > -1) {
-            this.words[index] = newWord;
-            this.saveChanges();
-        }
-    }
-
-    async saveChanges() {
+    addWord = async (data) => {
+        const newWord = { ...data, id: uuidv4() };
         try {
-            await wordsApiService.post(this.words);
+            await wordsApiService.addWord(newWord);
+            this.setWords([...this.words, newWord]);
         } catch (error) {
-            console.error("Ошибка при сохранении изменений:", error);
+            console.error("Ошибка при добавлении слова:", error);
         }
-    }
-}
+    };
+    
+
+    deleteWord = async (id) => {
+        try {
+            await wordsApiService.deleteWord(id);
+            const newWords = this.words.filter(({id: currentId}) => currentId !== id);
+            this.setWords(newWords);
+        } catch (error) {
+            console.error("Ошибка при удалении слова:", error);
+        }
+    };
+
+    updateWord = async (oldWord, newWordData) => {
+        const updatedWord = { ...oldWord, ...newWordData };
+        try {
+            await wordsApiService.updateWord(updatedWord);
+            this.setWords(this.words.map(word => (word.id === oldWord.id ? updatedWord : word)));
+        } catch (error) {
+            console.error("Ошибка при обновлении слова:", error);
+        }
+    };
+};
 
 export const wordsStore = new WordsStore();
 export const WordsStoreContext = createContext(wordsStore);
