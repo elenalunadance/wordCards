@@ -11,7 +11,7 @@ const HomePage = observer(() => {
 
     useEffect(() => {
         fetchWords();
-    }, []);
+    }, [fetchWords]);
 	
     const handleAdd = (e) => {
         e.preventDefault();
@@ -30,6 +30,7 @@ const HomePage = observer(() => {
     return (
         <div className={styles.table}>
             <form className={styles.formInputs} onSubmit={handleAdd}>
+                <h3 className={styles.title}>Добавить слово для изучения</h3>
                 <input
                     type="text"
                     name="english"
@@ -56,9 +57,11 @@ const HomePage = observer(() => {
                 />
                 <button type="button" className={styles.addBtn} onClick={handleAdd}>Добавить</button>
             </form>
+            <h3 className={styles.title}>Список слов</h3>
             {store.words.map(({ id, english, transcription, russian, tags, tags_json }) => (
                 <Word
                     key={id}
+                    id={id}
                     english={english}
                     transcription={transcription}
                     russian={russian}

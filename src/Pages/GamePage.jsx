@@ -51,8 +51,7 @@ const GamePage = observer(({ initialIndex = 0 }) => {
                         handleLearned={handleLearned}
                     />
                 )}
-            
-
+                
             <button className={styles.button} onClick={handleGoForward}>
                 <img src="src/assets/images/right_arrow.png" alt="вперед" />
             </button>

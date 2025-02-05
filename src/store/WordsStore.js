@@ -46,10 +46,19 @@ class WordsStore {
     };
 
     updateWord = async (oldWord, newWordData) => {
-        const updatedWord = { ...oldWord, ...newWordData };
+        const newWord = { ...oldWord, ...newWordData };
         try {
-            await wordsApiService.updateWord(updatedWord);
-            this.setWords(this.words.map(word => (word.id === oldWord.id ? updatedWord : word)));
+            console.log("Отправка данных на сервер:", { 
+                id: oldWord.id,
+                ...newWordData 
+            });
+            const response = await wordsApiService.updateWord({ 
+                id: oldWord.id,
+                ...newWordData 
+            });
+            console.log("Ответ от сервера:", response);
+            
+            this.setWords(this.words.map((word) => (word.id === oldWord.id ? newWord : word)));
         } catch (error) {
             console.error("Ошибка при обновлении слова:", error);
         }

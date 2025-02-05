@@ -6,3 +6,26 @@
     align-items: center;
 
 }
+
+.formInputs {
+    margin-bottom: 2rem;
+}
+
+.wordInput {
+    width: 20rem;
+    height: 2.1rem;
+}
+
+.title {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.addBtn {
+    height: 2.1rem;
+    border: 1px solid #cce2dc;
+    border-radius: 0.5rem;
+    background-color: #cce2dc;
+    font-weight: bold;
+    font-size: 0.8rem;
+}

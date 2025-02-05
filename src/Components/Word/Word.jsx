@@ -29,21 +29,25 @@ const Word = observer(({ id,english, transcription, russian, onClick }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!values.english || !values.transcription || !values.russian || 
+        if (!values || !values.english || !values.transcription || !values.russian || 
             values.english.trim().length < 2 || 
             values.transcription.trim().length < 2 || 
             values.russian.trim().length < 2) {
             alert('Пожалуйста, заполните все поля формы.');
             return;
         }
-        store.updateWord(values);
-        setEditing(false);
+        try {
+            store.updateWord({ id, english, transcription, russian }, values);
+            setEditing(false);
+        } catch (error) {
+            console.error('Ошибка отправки формы:', error);
+        }
     };
 
     return (
         <div className={styles.word}>
             {editing ? (
-                <form className={styles.form} onSubmit={handleSubmit}>
+                <form className={styles.form}>
                     <input
                         type="text"
                         name="english"
@@ -68,7 +72,7 @@ const Word = observer(({ id,english, transcription, russian, onClick }) => {
                         className={`${styles.wordInput} ${!values.russian ? styles.error : ''}`}
                         placeholder="Russian"
                     />
-                    <button type="submit" className={styles.saveBtn} disabled={!values.english || !values.transcription || !values.russian}>
+                    <button type="submit" className={styles.saveBtn} disabled={!values.english || !values.transcription || !values.russian} onClick={handleSubmit}>
                         Сохранить
                     </button>
                 </form>
