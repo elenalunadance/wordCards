@@ -1,15 +1,28 @@
 .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 10rem 18rem 10rem;
+    grid-template-rows: 26rem 10rem;
     justify-content: center;
     gap: 2rem;
     margin-top: 10rem;
 }
 
-.backBtn, .nextBtn {
-    width: 6rem;
+.button {
+    width: 10rem;
+    height: 26rem;
+    border: 1px solid rgb(154, 150, 150);
+    border-radius: 1rem;
+    background-color: #F5F5F5;
+}
+
+.arrow {
+    width: 10rem;
     height: 10rem;
-    border: 0.1px solid #cce2dc;
-    border-radius: 0.5rem;
-    background-color: #cce2dc;
-    align-self: center;
+}
+
+.wordsLearned {
+    grid-column: 2/3;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
 }

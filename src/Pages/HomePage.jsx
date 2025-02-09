@@ -3,15 +3,18 @@ import { useState, useEffect, useContext } from 'react';
 import styles from './homePage.module.css';
 import { WordsStoreContext } from '../store/WordsStore.js';
 import { observer } from 'mobx-react-lite';
+import Spinner from '../Components/Spinner/Spinner';
 
 const HomePage = observer(() => {
     const { updateWord, addWord, deleteWord, fetchWords} = useContext(WordsStoreContext);
     const [newWord, setNewWord] = useState({ english: '', transcription: '', russian: '' });
+    const [loading, setLoading] = useState(true);
     const store = useContext(WordsStoreContext);
 
     useEffect(() => {
-        fetchWords();
-    }, [fetchWords]);
+        fetchWords(store.words);
+        setLoading(false, 5000);
+    }, []);
 	
     const handleAdd = (e) => {
         e.preventDefault();
@@ -21,7 +24,6 @@ const HomePage = observer(() => {
         }
     };
 
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewWord(prevValues => ({ ...prevValues, [name]: value }));
@@ -29,6 +31,13 @@ const HomePage = observer(() => {
 
     return (
         <div className={styles.table}>
+            { loading ?
+            (
+                <Spinner />
+            )
+            : 
+            (
+            <div>
             <form className={styles.formInputs} onSubmit={handleAdd}>
                 <h3 className={styles.title}>Добавить слово для изучения</h3>
                 <input
@@ -58,21 +67,24 @@ const HomePage = observer(() => {
                 <button type="button" className={styles.addBtn} onClick={handleAdd}>Добавить</button>
             </form>
             <h3 className={styles.title}>Список слов</h3>
-            {store.words.map(({ id, english, transcription, russian, tags, tags_json }) => (
-                <Word
-                    key={id}
-                    id={id}
-                    english={english}
-                    transcription={transcription}
-                    russian={russian}
-                    tags={tags}
-                    tags_json={tags_json}
-                    deleteWord={deleteWord}
-                    updateWord={updateWord}
-                    addWord={addWord}
-                    fetchWords={fetchWords}
-                />
-            ))}
+            
+                {store.words.map(({ id, english, transcription, russian, tags, tags_json }) => (
+                    <Word
+                        key={id}
+                        id={id}
+                        english={english}
+                        transcription={transcription}
+                        russian={russian}
+                        tags={tags}
+                        tags_json={tags_json}
+                        deleteWord={deleteWord}
+                        updateWord={updateWord}
+                        addWord={addWord}
+                        fetchWords={fetchWords}
+                    />
+                ))}
+            </div>)
+            }
         </div>
     );
 });

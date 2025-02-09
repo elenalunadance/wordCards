@@ -22,9 +22,11 @@
     border: 1px solid #cce2dc;
     border-radius: 1rem;
     background-color: #cce2dc;
+    font-size: 1rem;
 }
 
 .translateBtn:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(7, 129, 74, 0.49);
 }
+

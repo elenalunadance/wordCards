@@ -4,7 +4,7 @@ import styles from './card.module.css';
 import { observer } from 'mobx-react-lite';
 import { WordsStoreContext } from '../../store/WordsStore';
 
-const Card = observer(({ english, transcription, russian }) => {
+const Card = observer(({ english, transcription, russian, handleLearned }) => {
     const [isPressed, setIsPressed] = useState(false);
     const buttonRef = useFocus();
     const store = useContext(WordsStoreContext);
@@ -21,7 +21,7 @@ const Card = observer(({ english, transcription, russian }) => {
             <button 
                 type="submit" 
                 className={styles.translateBtn} 
-                onClick={() => { handleClick(); store.itemsCount(); }}
+                onClick={() => { handleClick(); handleLearned(); }}
                 style={{ display: isPressed ? 'none' : 'block' }} 
                 ref={buttonRef} 
             >

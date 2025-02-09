@@ -38,7 +38,7 @@ const GamePage = observer(({ initialIndex = 0 }) => {
     return (
         <div className={styles.container}>
             <button className={styles.button} onClick={handleGoBack}>
-                <img src="src/assets/images/left_arrow.png" alt="назад" />
+                <img className={styles.arrow} src="src/assets/images/left_arrow.png" alt="назад" />
             </button>
             
                 {words.length > 0 && (
@@ -53,7 +53,7 @@ const GamePage = observer(({ initialIndex = 0 }) => {
                 )}
                 
             <button className={styles.button} onClick={handleGoForward}>
-                <img src="src/assets/images/right_arrow.png" alt="вперед" />
+                <img className={styles.arrow} src="src/assets/images/right_arrow.png" alt="вперед" />
             </button>
             <p className={styles.wordsLearned}>Изучено слов: {wordsLearned}/{words.length}</p>
         </div>

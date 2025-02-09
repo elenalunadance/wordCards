@@ -23,7 +23,7 @@
 .editBtn {
     width: 2rem;
     height: 2.1rem;
-    background-color: #e4c6f6;
+    background-color: #cce2dc;
     border: 1px solid #e4c6f6;
     border-radius: 0.5rem;
 }
@@ -36,8 +36,8 @@
 .deleteBtn {
     width: 2rem;
     height: 2.1rem;
-    background-color: #f4b5c9;
-    border: 1px solid #f4b5c9;
+    background-color: #cce2dc;
+    border: 1px solid #e4c6f6;
     border-radius: 0.5rem;
 }
 
