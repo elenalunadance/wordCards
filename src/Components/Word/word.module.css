@@ -1,78 +1,77 @@
 .word {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin-top: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-top: 0.1rem;
 }
 
 .paragraph {
-    width: 25rem;
-    height: 2rem;
-    border: 1px solid #070707;
+  width: 25rem;
+  height: 2rem;
+  border: 1px solid #070707;
 }
 
 .saveBtn {
-    height: 2.1rem;
-    border: 1px solid #cce2dc;
-    border-radius: 0.5rem;
-    background-color: #cce2dc;
-    font-weight: bold;
-    font-size: 0.8rem;
+  height: 2.1rem;
+  border: 1px solid #cce2dc;
+  border-radius: 0.5rem;
+  background-color: #cce2dc;
+  font-weight: bold;
+  font-size: 0.8rem;
 }
 
 .editBtn {
-    width: 2rem;
-    height: 2.1rem;
-    background-color: #cce2dc;
-    border: 1px solid #e4c6f6;
-    border-radius: 0.5rem;
+  width: 2rem;
+  height: 2.1rem;
+  background-color: #cce2dc;
+  border: 1px solid #e4c6f6;
+  border-radius: 0.5rem;
 }
 
 .edit {
-    width: 2rem;
-    height: 2.1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .deleteBtn {
-    width: 2rem;
-    height: 2.1rem;
-    background-color: #cce2dc;
-    border: 1px solid #e4c6f6;
-    border-radius: 0.5rem;
+  width: 2rem;
+  height: 2.1rem;
+  background-color: #cce2dc;
+  border: 1px solid #e4c6f6;
+  border-radius: 0.5rem;
 }
 
 .trash {
-    width: 2rem;
-    height: 2.1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .word:hover {
-    background-color: #edf4f2;
-    cursor: pointer;
+  background-color: #edf4f2;
+  cursor: pointer;
 }
 
 .selected {
-    background-color: #cce2dc;  
+  background-color: #cce2dc;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .form {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    width: 100%;
-    margin-top: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+  margin-top: 0.1rem;
 }
 
 .wordInput {
-    width: 25rem;
-    height: 2.1rem;
+  width: 25rem;
+  height: 2.1rem;
 }
 
 .error {
-    border: 1px solid red;
+  border: 1px solid red;
 }
-
