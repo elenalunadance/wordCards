@@ -7,15 +7,15 @@ import { observer } from 'mobx-react-lite';
 
 const App = observer(() => {
   return (
-    <Router>
-      <div className="app">
+    <Router basename='/wordCards'>
+      <div className='app'>
         <Header />
-        
+
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/game" element={<GamePage />} />
-          <Route path="*" element={<Missing />} />
-        </Routes>       
+          <Route path='/' element={<HomePage />} />
+          <Route path='/game' element={<GamePage />} />
+          <Route path='*' element={<Missing />} />
+        </Routes>
       </div>
     </Router>
   );
